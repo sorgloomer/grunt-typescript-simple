@@ -1,0 +1,42 @@
+{
+  "name": "grunt-typescript-simple",
+  "description": "tsc-like Grunt task",
+  "version": "0.1.0",
+  "homepage": "https://github.com/sorgloomer/grunt-typescript-simple",
+  "author": "Tamas Hegedus",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/sorgloomer/grunt-typescript-simple.git"
+  },
+  "bugs": {
+    "url": "https://github.com/sorgloomer/grunt-typescript-simple/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/sorgloomer/grunt-typescript-simple/blob/master/LICENSE-MIT"
+    }
+  ],
+  "engines": {
+    "node": ">= 6.0.0"
+  },
+  "scripts": {
+    "test": "grunt test"
+  },
+  "devDependencies": {
+    "grunt-contrib-jshint": "^0.9.2",
+    "grunt-contrib-clean": "^0.5.0",
+    "grunt-contrib-nodeunit": "^0.3.3",
+    "grunt": ">=0.4.5"
+  },
+  "peerDependencies": {
+    "typescript": "~2.0.3 || >=2.0.0-dev || >=2.1.0-dev"
+  },
+  "keywords": [
+    "gruntplugin",
+    "typescript",
+    "tsc",
+    "compile",
+    "compiler"
+  ]
+}

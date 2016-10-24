@@ -15,15 +15,12 @@ module.exports = function(grunt) {
   grunt.registerMultiTask('typescript_simple', 'tsc-like Grunt task', function() {
     const options = this.options({});
 
-    if (options.outFile) {
-      throw new Error(MSG_PREFIX + "options.outFile is not supported: will be filled from file dest");
-    }
-
     const ts = options.typescript || require("typescript");
     delete options.typescript;
 
     const sources = collectSourceFiles(this.files);
     const compilerOptions = parseOptions(ts, options);
+    
     compile(ts, sources, compilerOptions);
   });
 
@@ -44,9 +41,11 @@ module.exports = function(grunt) {
         throw new Error(MSG_PREFIX + "File src format not supported: use {expand: true} without dest");
       }
       const srcName = file.src[0];
+      /*
       if (file.dest && file.dest !== srcName) {
         throw new Error(MSG_PREFIX + "File dests are not supported: use outDir instead");
       }
+      */
       return srcName;
     });
   }
@@ -55,13 +54,13 @@ module.exports = function(grunt) {
     let program = ts.createProgram(fileNames, compilerOptions);
     let emitResult = program.emit();
     let allDiagnostics = ts.getPreEmitDiagnostics(program).concat(emitResult.diagnostics);
-    reportDiagnostics(allDiagnostics);
+    reportDiagnostics(ts, allDiagnostics);
     if (!compilerOptions.noEmit && emitResult.emitSkipped) {
       throw new Error(MSG_PREFIX + "Emit skipped due to errors");
     }
   }
 
-  function reportDiagnostics(diagnostics) {
+  function reportDiagnostics(ts, diagnostics) {
     diagnostics.forEach(diagnostic => {
       let message = ts.flattenDiagnosticMessageText(diagnostic.messageText, '\n');
       let prefix = "Typescript: ";

@@ -25,12 +25,12 @@ In your project's Gruntfile, add a section named `typescript_simple` to the data
 ```js
 grunt.initConfig({
   typescript_simple: {
-    options: {
-      // typescript CompilerOptions
-    },
     dist: {
-      outDir: "dist",
-      files: [{ cwd: "src", src: "**/*.ts", expand: true }]
+      options: {
+        // typescript CompilerOptions
+        outDir: "dist",
+      },
+      files: [{ src: "src/**/*.ts", expand: true }]
     }
   },
 });
@@ -56,8 +56,10 @@ In this example, the default options are used to compile typescript sources
 grunt.initConfig({
   typescript_simple: {
     dist: {
-      outDir: "dist",
-      files: [{ cwd: "src", src: "**/*.ts", expand: true }]
+      options: {
+        outDir: "dist",
+      },
+      files: [{ src: "src/**/*.ts", expand: true }]
     }
   },
 });
@@ -77,7 +79,9 @@ grunt.initConfig({
       noImplicitAny: true
     },
     dist: {
-      outDir: "dist",
+      options: {
+        outDir: "dist",
+      },
       files: [{ cwd: "src", src: "**/*.ts", expand: true }]
     }
   },

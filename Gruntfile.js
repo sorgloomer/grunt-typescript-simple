@@ -32,19 +32,21 @@ module.exports = function(grunt) {
     typescript_simple: {
       default_options: {
         options: {
+          outDir: "tmp/test/default_options",
         },
-        files: {
-          'tmp/default_options': ['test/fixtures/testing', 'test/fixtures/123']
-        }
+        files: [{ src: "test/fixtures/good.ts", expand: true }]
       },
+      
       custom_options: {
         options: {
-          separator: ': ',
-          punctuation: ' !!!'
+          outFile: "tmp/test/custom_options.js",
+          typescript: require("typescript"),
+          target: "es5",
+          module: "amd",
+          strictNullChecks: true,
+          noImplicitAny: true
         },
-        files: {
-          'tmp/custom_options': ['test/fixtures/testing', 'test/fixtures/123']
-        }
+        files: [{ src: "test/fixtures/good.ts", expand: true }]
       }
     },
 
